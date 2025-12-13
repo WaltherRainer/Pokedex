@@ -35,7 +35,7 @@ input:checked + label .tab_name {
     z-index: 0;
     opacity: 0;
     transition: 0.3s;
-    min-width: 282px;
+    /* min-width: 282px; */
     max-height: 160px;
     overflow-y: auto;
 }
@@ -46,7 +46,8 @@ input:checked + label .tab_content {
 }
 
 .tab_label {
-    min-width: 96px;
+    min-width: calc(288px / 3);
+
 }
 
 .tab_name:hover {
@@ -54,4 +55,31 @@ input:checked + label .tab_content {
     transition: 0.3s;
 }
 
-    
+@media (max-width: 375px) {
+    td:nth-child(1) {
+        min-width: 80px;
+    }
+    .modal {
+        width: 270px;
+        overflow: hidden;
+    }
+.tab_label {
+    min-width: calc(238px / 3);
+}
+.tab_evo {
+    flex-direction: column;
+}
+.progress_bar {
+    --max-width: 200px;
+    width: 200px;
+}
+.tab_content {
+    width: 235px;
+}
+}
+
+@media (max-width: 326px) {
+    .tab_label {
+        min-width: calc(236px / 3);
+}
+}

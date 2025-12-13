@@ -1,4 +1,5 @@
     function openDistModal(index) {
+        loadModalCard(index);
         modal.showModal();
     }
 

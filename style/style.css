@@ -41,16 +41,16 @@
 
 main {
     min-height: 80dvh;
-    margin-left: 12px;
     margin-top: 60px;
 }
 
 td:nth-child(1) {
-    min-width: 140px;
+    min-width: 100px;
 }
 
 table {
     padding: 0 8px;
+    font-size: 15px;
 }
 
 td {
@@ -101,16 +101,14 @@ h3 {
     display: grid;
     grid-auto-rows: 206px;
     grid-template-columns: repeat(auto-fit, minmax(156px, 1fr));
-    gap: 1rem;
+    gap: .7rem;
     justify-content: center;
-    margin: 1rem 1rem;
+    margin: .7rem .7rem;
 }
 
 .grid_content {
     min-height: 206px;
     min-width: 156px;
-
-    /* background-color: aqua; */
 }
 
 footer {

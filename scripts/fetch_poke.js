@@ -1,8 +1,9 @@
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon"; 
 let activeData = [];
-let pokeCount = 100;
-let pokeOffset = 80;
+let pokeCount = 10;
+let pokeOffset = 0;
 let pokeDetailData = []; 
+let pokeEvoChain = [];
 
 async function loadData(path = BASE_URL + "?limit=" + pokeCount +"&offset=" + pokeOffset) {
     try {
@@ -45,21 +46,49 @@ async function getEvolutionChainData(chainData) {
     return evolutionArray;
 };
 
-async function loopActiveData() {
-    for (let i = 0; i < activeData.length; i++) {
-        const pokeEntry = activeData[i];
+function loadModalCard(id) {
+    fillPokeEvoChain(id);
+    renderModalCard(id);
+}
+
+function renderModalCard(id) {
+    const pokeNumber = id + 1 + pokeOffset;
+    const pokeName = pokeDetailData[id].name;
+    // document.getElementById('poke_number').innerHTML = `#${pokeNumber}`
+    // document.getElementById('poke_name').innerHTML = `${pokeName}`
+}
+
+
+async function fillPokeEvoChain(id) {
+        const pokeEntry = activeData[id];
         const pokDetail = await useAPI(pokeEntry.url);
         const speciesUrl = pokDetail.species.url;
         const speciesData = await useAPI(speciesUrl);
         const chainUrl = speciesData.evolution_chain.url;
         const chainData = await useAPI(chainUrl);
         const evolutionChainArray = await getEvolutionChainData(chainData.chain);
-        pokeDetailData.push(filledDataArray(pokeEntry, pokDetail, evolutionChainArray));
+        pokeEvoChain.push(evolutionChainArray);
+}
+
+async function loopActiveData() {
+    for (let i = 0; i < activeData.length; i++) {
+        const pokeEntry = activeData[i];
+        const pokDetail = await useAPI(pokeEntry.url);
+
+
+        // const speciesUrl = pokDetail.species.url;
+        // const speciesData = await useAPI(speciesUrl);
+        // const chainUrl = speciesData.evolution_chain.url;
+        // const chainData = await useAPI(chainUrl);
+        // const evolutionChainArray = await getEvolutionChainData(chainData.chain);
+
+
+        pokeDetailData.push(filledDataArray(pokeEntry, pokDetail));
         // console.log(pokeDetailData);
     }
 };
 
-function filledDataArray(pokeEntry, pokDetail, evolutionChainArray) {
+function filledDataArray(pokeEntry, pokDetail) {
         let tmpData = {
             "name": pokeEntry.name,
             "weight": pokDetail.weight,
@@ -69,7 +98,6 @@ function filledDataArray(pokeEntry, pokDetail, evolutionChainArray) {
             "stats" : pokDetail.stats,
             "types" : pokDetail.types,
             "abilities" : pokDetail.abilities,
-            "evolution_chain": evolutionChainArray 
         }
         return tmpData;
 };
@@ -85,20 +113,24 @@ async function onloadFunction() {
     // console.table(pokeDetailData[7].evolution_chain);
     // console.table(pokeDetailData[7].types.length);
 
-    console.log(getImgUrl(0));
+    // console.log(getImgUrl(0));
 
    renderPrevCard();
+   
+
+//    console.log(pokeEvoChain);
 };
 
-function renderPrevCard() {
+async function renderPrevCard() {
     let pokeTypesTempl = "";
     
     document.getElementById('prev_card').innerHTML = ""
     for (let index = 0; index < activeData.length; index++) {
         const pokeName = activeData[index].name;
         const imgUrl = getImgUrl(index);
+        const pokeNumber = index + 1 + pokeOffset 
         pokeTypesTempl = renderTypesTempl(index);
-        let tmpHtml = getPrevCardTempl(index, pokeName, imgUrl, pokeTypesTempl)
+        let tmpHtml = getPrevCardTempl(index, pokeName, imgUrl, pokeTypesTempl, pokeNumber)
         document.getElementById('prev_card').innerHTML += tmpHtml
     }
     
@@ -118,9 +150,3 @@ function renderTypesTempl(id) {
     return pokeTypesTempl
 }
 
-function renderPokeBoxes() {
-    for (let index = 0; index < activeData.length; index++) {
-        const element = activeData[index];
-        
-    }
-}
