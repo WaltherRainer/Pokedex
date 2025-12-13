@@ -1,0 +1,75 @@
+.animated_div:hover::after,
+.animated_div:hover::before {
+  animation: 2.5s spin_small linear infinite;
+  padding: 3px 3px;
+  background-image: conic-gradient(
+    from var(--angle),
+    var(--yellow_1),
+    var(--purple_1),
+    var(--purple_2),
+    var(--yellow_1)
+  );
+}
+
+.animated_div {
+  margin: 0 auto;
+  background-color: hsl(0 0% 5%);
+  text-align: center;
+  border-radius: 10px;
+  position: relative;
+}
+
+.card_background {
+  min-width: 156px;
+  min-height: 206px;
+  background: linear-gradient(
+    to right,
+    var(--purple_1),
+    var(--yellow_1),
+    var(--purple_2)
+  );
+  border-radius: 10px;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.animated_div::after,
+.animated_div::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+  padding: 0;
+  border-radius: 10px;
+  animation: none;
+}
+
+@keyframes spin_small {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
+  }
+}
+
+.animated_div::before {
+  filter: blur(1.5rem);
+  opacity: 0.5;
+}
+
+.animated_div:hover {
+  cursor: pointer;
+}
+
+
+
+

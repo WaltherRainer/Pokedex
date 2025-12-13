@@ -1,0 +1,233 @@
+.card_head {
+    color: hsl(0, 0%, 85%);
+    
+}
+.card_head p {
+    font-size: 36px;
+}
+
+.poke_card_body:hover {
+  background: none;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  flex-direction: column;
+}
+
+.card {
+  position: relative;
+  height: 200px;
+  width: 150px;
+  background: hsl(0, 0%, 10%);
+  clip-path: path(
+    "M 10,20 L 40,20 A 10,10 0,0,0 50,10 L 50,10 A 10,10 0,0,1 60,0 L 140,0 A 10,10 0,0,1 150,10 L 150,190 A 10,10 0,0,1 140,200 L 10,200 A 10,10 0,0,1 0,190 L 0,30 A 10,10 0,0,1 10,20 Z"
+  );
+}
+
+.close_svg {
+    width: 24px;
+    cursor: pointer;
+}
+
+.card p {
+    /* padding-top: 32px; */
+text-align: right;
+margin-right: 6px;
+font-size: 16px;
+color: hsl(0, 0%, 85%);
+
+/* padding-left: 64px; */
+}
+
+.card img {
+  /* height: 100%;
+  width: 100%; */
+  object-fit: contain;
+  /* padding: 10px; */
+}
+
+.title {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 19px;
+  width: 49px;
+  background-color: var(--purple_1);
+  clip-path: inset(0.5px round 10px 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  color: white;
+  font-weight: 600;
+}
+.card_background {
+  min-width: 156px;
+  min-height: 206px;
+  position: absolute;
+  background: linear-gradient(
+    to right,
+    var(--purple_1),
+    var(--yellow_1),
+    var(--purple_2)
+  );
+  /* padding: 8px 8px; */
+  border-radius: 10px;
+}
+
+.card_background:hover {
+  background: none;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: hsl(0, 0%, 10%);
+}
+
+/* Hier den Hintrgrund anpassen bei geöffnetem Modal */
+dialog::backdrop {
+    background-color: hsl(0, 0%, 10%);
+}
+
+.modal {
+    padding: 16px 16px;
+    position: absolute;
+    z-index: 10;
+    width: 320px;
+    height: 110%;
+    background-color: hsl(0, 0%, 10%);
+    border: none;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+}
+
+.large_card {
+    max-width: 300px;
+    background-color: hsl(0, 0%, 10%);
+    border-radius: 10px;
+    color: hsl(0, 0%, 85%);
+    position: relative;
+}
+
+.large_card::after, .large_card::before {
+    
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+      background-image: conic-gradient(from var(--angle_large_card),
+    var(--yellow_1),
+    var(--purple_1),
+    var(--blue_1),
+    var(--purple_1),
+    var(--yellow_1)
+  );
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-radius: 10px;
+    animation: 3s spin linear infinite;
+
+}
+
+@keyframes spin{
+    from{
+        --angle_large_card: 0deg;
+    }
+    to{
+        --angle_large_card: 360deg;
+    }
+}
+
+@property --angle_large_card{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+
+}
+
+.large_card::before {
+    filter: blur(.5rem);
+}
+
+.large_card_head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 24px;
+    margin: 8px 8px;
+}
+
+.types_container {
+    margin: 8px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.tab_evo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+}
+
+.evo_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.progress_bar {
+    --max-width: 260px;
+    width: 260px;
+    height: 1.5em;
+    /* background-color: var(--yellow_2); */
+    
+    position: relative;
+  background: linear-gradient(to right, var(--green_4), var(--yellow_1)) padding-box,
+              linear-gradient(to right, var(--blue_1), var(--purple_1)) border-box;
+  border-radius: 50em;
+  border: 4px solid transparent;
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  margin-top: 24px;
+  margin-left: 8px;
+
+}
+
+.progress_bar::before {
+    content: attr(data-label);
+    position: absolute;
+    transform: translateY(-26px);
+    
+}
+
+.progress_bar::after {
+    content: " ";
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: .5em;
+    top: .1em;
+    bottom: .1em;
+    width: calc(var(--width, 0) * 1%);
+    min-width: 2rem;
+    max-width: calc(280px - 1em);
+    background: linear-gradient(to right, var(--blue_1), var(--purple_1));
+    background-size: var(--max-width) 100%;
+    border-radius: 1em;
+}

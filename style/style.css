@@ -1,0 +1,131 @@
+:root {
+    --green_1: #008000;
+    --green_2: #38B000;
+    --green_3: #70E000;
+    --green_4: #9ef01a;
+    --green_5: #ccff33;
+    --purple_1: #35063e;
+    --purple_2: #BF2EF0;
+    --purple_3: #ED3EF7;
+    --yellow_2: #FAFA33;
+    --yellow_1: #FFD700;
+    --blue_1: rgb(2,0,101);
+    --blue_2: rgb(52,49,154);
+
+}
+
+.d_flex_c_c {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.d_flex_c_sa {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.type_cycle_1 {
+    border-radius: 50%;
+    background-color: red;
+}
+
+.type_cycles {
+    min-height: 80px;
+}
+
+.type_img {
+    width: 40px;
+}
+
+main {
+    min-height: 80dvh;
+    margin-left: 12px;
+    margin-top: 60px;
+}
+
+td:nth-child(1) {
+    min-width: 140px;
+}
+
+table {
+    padding: 0 8px;
+}
+
+td {
+    padding: 4px 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+
+.poke_card {
+    min-height: 300px;
+    background-color: #70E000;
+}
+
+body { 
+    background-color: hsl(0, 0%, 5%);
+    min-height: 100dvh;
+    margin: 0;
+    font-family: "Comic Relief", system-ui;
+    
+}
+
+header {
+    min-width: 100%;
+    background-image: linear-gradient(to bottom, var(--purple_1), hsl(0, 0%, 5%));
+    display: flex;
+    min-height: 10vh;
+    
+}
+
+h1 {
+    text-align: center;
+    font-family: "Nabla", system-ui;
+    color: hsl(0 0% 85%);
+    font-size: 4em;
+    padding-bottom: 40px;
+}
+
+h3 {
+    font-family: "Nabla", system-ui;
+}
+
+.grid_container {
+    display: grid;
+    grid-auto-rows: 206px;
+    grid-template-columns: repeat(auto-fit, minmax(156px, 1fr));
+    gap: 1rem;
+    justify-content: center;
+    margin: 1rem 1rem;
+}
+
+.grid_content {
+    min-height: 206px;
+    min-width: 156px;
+
+    /* background-color: aqua; */
+}
+
+footer {
+    min-width: 100%;
+    background-image: linear-gradient(to top, var(--bg_purple_blue), hsl(0, 0%, 10%));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 10vh;
+}
+
+.card_head {
+    margin: 8px 8px;
+    display: flex;
+    justify-content: space-between;
+    color: hsl(0, 0%, 85%);
+}
+

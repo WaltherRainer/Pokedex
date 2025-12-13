@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- Titel einfügen-->
+        <title>Pokedex</title>
+        <link rel="stylesheet" href="./style/style.css">
+        <link rel="stylesheet" href="./style/animated_frame.css">
+        <link rel="stylesheet" href="./style/images.css">
+        <link rel="stylesheet" href="./style/card.css">
+        <link rel="stylesheet" href="./style/icons.css">
+        <link rel="stylesheet" href="./style/tabs.css">
+        <script src="./scripts/fetch_poke.js"></script>
+        <script src="./scripts/templates.js"></script>
+        
+        <!-- Evtl. Fonst einfügen-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&family=Nabla&display=swap" rel="stylesheet">
+        <!-- Icon einfügen-->
+        <link rel="icon" type="image/x-icon" href="./assets/images/002.png">
+<style>
+
+
+</style>
+
+</head>
+
+<body onload="onloadFunction()">
+
+    <header>
+        <div class="logo_img">
+            <img class="header_logo_image" src="./assets/images/Pokédex_logo.png" alt="">
+        </div>
+    </header>
+  
+    <main>
+        <section class="grid_container"  id="prev_card">
+            <div class="grid_content">
+                <div onclick="openDistModal(0)" class="container card_background">
+                    <div class="animated_div">
+                        <div class="title">#1</div>
+                        <div class="card">
+                            <p>Bulbasaur</p>
+                            <img class="image" src="./assets/images/004.png" alt="">
+                            <div class="type_icon type-grass" href="">Grass</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <dialog data_modal class="modal">
+
+            <div class="large_card">
+                <div class="large_card_head">
+                    <h3>#4</h3>
+                    <h3>Charmander</h3>
+                    <img onclick="closeModal()" class="close_svg" src="./assets/icons/close_circle_yellow.svg" alt="close">
+                </div>
+                <div class="large_card_img">
+                    <img class="large_image" src="./assets/images/004.png" alt="">
+                </div>
+                <div class="types_container">
+                    <img class="close_svg" src="./assets/icons/left_yellow.svg" alt="close">
+                    <div class="types_symbols" id="types_symbols">
+                        <div class="type_icon type-fire" href="">Fire</div>
+                        <div class="type_icon type-fire" href="">Fire</div>
+                        <div class="type_icon type-fire" href="">Fire</div>
+                    </div>
+                    <img class="close_svg" src="./assets/icons/right_yellow.svg" alt="close">
+                </div>
+
+                <div class="tab_container">
+                    <input type="radio" name="option" id="opt_1" checked>
+                    <label class="tab_label" for="opt_1">
+                        <div class="tab_name">Main</div>
+                            <div class="tab_content">
+                                <table>
+                                    <tr>
+                                        <td>Height:</td>
+                                        <td>0.6 m</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight:</td>
+                                        <td>8.8 Kg</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Base Experience:</td>
+                                        <td>62</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Abilities:</td>
+                                        <td>blaze, solar-power</td>
+                                    </tr>
+                                </table>
+                            </div>
+                    </label>
+
+                    <input type="radio" name="option" id="opt_2">
+                    <label class="tab_label" for="opt_2">
+                        <div class="tab_name">Stats</div>
+                        <div class="tab_content">
+                            <div class="progress_bar" data-label="hp 80" style="--width: 80"></div>
+                            <div class="progress_bar" data-label="attack 60" style="--width: 60"></div>
+                            <div class="progress_bar" data-label="defense 45" style="--width: 45"></div>
+                            <div class="progress_bar" data-label="special-attack 20" style="--width: 20"></div>
+                            <div class="progress_bar" data-label="special-defense 34" style="--width: 34"></div>
+                            <div class="progress_bar" data-label="speed 44" style="--width: 44"></div>
+                        </div>
+                    </label>
+
+                    <input type="radio" name="option" id="opt_3">
+                    <label class="tab_label" for="opt_3">
+                        <div class="tab_name">Evo Chain</div>
+                        <div class="tab_content">
+                            <div class="tab_evo">
+                                <div class="evo_item">
+                                    <img class="tab_image" src="./assets/images/004.png">
+                                    <h5>Glumanda</h5>
+                                </div>
+                                <img src="./assets/icons/chevron-double-right.svg">
+                                <div class="evo_item">
+                                    <img class="tab_image" src="./assets/images/005.png">
+                                    <h5>Glutexo</h5>
+                                </div>
+                                <img src="./assets/icons/chevron-double-right.svg">
+                                <div class="evo_item">
+                                    <img class="tab_image" src="./assets/images/006.png">
+                                    <h5>Glurak</h5>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </dialog>
+    </main>
+
+    <footer>
+        <div class="logo_img mar_16">
+            <img src="./assets/images/Pokédex_logo.png" alt="">
+        </div>
+    </footer>
+
+</body>
+
+<script src="./scripts/script.js"></script>
+
+<script>
+    // const openButton = document.querySelector("[data_open_modal]");
+    // const closeButton = document.querySelector("[data_close_modal]");
+    const modal = document.querySelector("[data_modal]");
+    const overlay = document.querySelector("[data_overlay]")
+
+    // openButton.addEventListener("click", () => {
+    //     modal.showModal();
+    // });
+
+    // closeButton.addEventListener("click", () => {
+    //     modal.close();
+    // });
+
+
+</script>
+
+</html>
