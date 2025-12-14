@@ -165,14 +165,15 @@ dialog::backdrop {
 .types_container {
     margin: 8px 8px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 .tab_evo {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     padding: 8px;
+    flex-wrap: wrap;
 }
 
 .evo_item {

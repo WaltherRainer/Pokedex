@@ -21,8 +21,6 @@
 input:checked + label .tab_name {
     background-color: var(--purple_1);
     transition: .2s;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
 }
 
 .tab_content {
@@ -36,9 +34,9 @@ input:checked + label .tab_name {
     opacity: 0;
     transition: 0.3s;
     min-width: 282px;
-    max-height: 340px;
+    max-height: 330px;
     overflow-y: auto;
-    min-height: 330px;
+    min-height: 320px;
 }
 
 input:checked + label .tab_content {

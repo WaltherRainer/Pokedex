@@ -11,6 +11,7 @@
     --yellow_1: #FFD700;
     --blue_1: rgb(2,0,101);
     --blue_2: rgb(52,49,154);
+    --scroll-y: 0;
 
 }
 
@@ -18,6 +19,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.d_flex_c_sb {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.marg_8 {
+    margin: 8px 8px;
 }
 
 .d_flex_c_sa {
@@ -74,7 +85,6 @@ body {
     min-height: 100dvh;
     margin: 0;
     font-family: "Comic Relief", system-ui;
-    
 }
 
 header {
@@ -99,13 +109,11 @@ h3 {
 }
 
 .grid_container {
-    display: grid;
-    justify-content: center;
-    justify-items: center;
-    grid-auto-rows: 206px;
-    grid-template-columns: repeat(auto-fit, minmax(156px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: .7rem;
-    margin: .7rem .7rem;
+    margin: .7rem .7rem; 
+    justify-content: center;
 }
 
 .grid_content {
@@ -128,4 +136,12 @@ footer {
     justify-content: space-between;
     color: hsl(0, 0%, 85%);
 }
+
+/* .no-scroll {
+    top: calc(var(--scroll-y) * -1); 
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 100%;
+} */
 

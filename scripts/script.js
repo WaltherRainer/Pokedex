@@ -6,6 +6,8 @@ let pokeEvoChain = [];
 let activePokeID = 0;
 let allPokemons = [];
 let activePokeIndex = 0; 
+let scrollPosition = 0;
+
 const modal = document.querySelector("[data_modal]");
 const overlay = document.querySelector("[data_overlay]")
 const searchInput = document.querySelector("[search_input]")
@@ -23,6 +25,12 @@ searchInput.addEventListener("input", () => {
     }
 });
 
+document.addEventListener('keydown', (e) => {
+    if (e.key === "Escape") {
+        closeModal();
+    }
+});
+
 modal.addEventListener("click", e => {
   const dialogDimensions = modal.getBoundingClientRect()
   if (
@@ -36,12 +44,14 @@ modal.addEventListener("click", e => {
 });
 
 async function onloadFunction() {
+    document.body.classList.add('no-scroll');
     document.getElementById('loading_spinner').innerHTML = getLoadingSpinnerTempl();
     let pokData = await useAPI(); 
     activePokeData = pokData["results"];
     await loopActivePokeData();
     await loadAllPokeNames();
     document.getElementById('loading_spinner').innerHTML = "";
+    document.body.classList.remove('no-scroll');
     renderPreviewCard();
 };
 
@@ -156,6 +166,7 @@ function searchForPokeName(pokeName) {
 function showMore() {
     let qty = parseInt(document.getElementById('qty_to_show').value)
     pokeCount = pokeCount + qty;
+    document.getElementById('prev_card').innerHTML = "";
     onloadFunction();
 };
 

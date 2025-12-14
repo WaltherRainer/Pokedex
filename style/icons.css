@@ -1,7 +1,7 @@
 .type_icon {
     display: inline-block;
     width: 66px;
-    margin-bottom: 4px;
+    /* margin-bottom: 4px; */
     background: #dbdbdb;
     border: 1px solid #a3a3a3;
     border-radius: 4px;
