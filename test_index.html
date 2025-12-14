@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="./style/card.css">
         <link rel="stylesheet" href="./style/icons.css">
         <link rel="stylesheet" href="./style/tabs.css">
+        <link rel="stylesheet" href="./style/searchbar.css">
         <script src="./scripts/fetch_poke.js"></script>
         <script src="./scripts/templates.js"></script>
         
@@ -21,7 +22,6 @@
         <!-- Icon einfügen-->
         <link rel="icon" type="image/x-icon" href="./assets/images/002.png">
 <style>
-
 
 </style>
 
@@ -34,8 +34,20 @@
             <img class="header_logo_image" src="./assets/images/Pokédex_logo.png" alt="">
         </div>
     </header>
-  
+
     <main>
+
+    <section class="searchbar">
+        <form >
+            <div class="search_container">
+                <input search_input type="text" class="text_input" id="poke_search"
+                autocomplete="off" placeholder="Min. 3 Zeichen" required>
+                <label class="search_label" for="poke_search">Suchen</label>
+            </div>
+        </form>
+        <button onclick="showMore()" class="btn_showmore">Show more</button>
+    </section>
+
         <section class="grid_container"  id="prev_card">
             <div class="grid_content">
                 <div onclick="openDistModal(0)" class="container card_background">
@@ -59,16 +71,16 @@
                     <h3 id="poke_name">Charmander</h3>
                     <img onclick="closeModal()" class="close_svg" src="./assets/icons/close_circle_yellow.svg" alt="close">
                 </div>
-                <div class="large_card_img">
+                <div class="large_card_img" id="poke_modal_img">
                     <img class="large_image" src="./assets/images/004.png" alt="">
                 </div>
                 <div class="types_container">
-                    <img class="close_svg" src="./assets/icons/left_yellow.svg" alt="close">
-                    <div class="types_symbols" id="types_symbols">
-                        <div class="type_icon type-fire" href="">Fire</div>
-                        <div class="type_icon type-fire" href="">Fire</div>
+                    <img onclick="prevPoke()" class="close_svg" src="./assets/icons/left_yellow.svg" alt="close">
+                    <div class="types_symbols" id="poke_type_symbols">
+                        <div class="type_icon type-fire" href="">fire</div>
+                        <div class="type_icon type-water" href="">water</div>
                     </div>
-                    <img class="close_svg" src="./assets/icons/right_yellow.svg" alt="close">
+                    <img onclick="nextPoke()" class="close_svg" src="./assets/icons/right_yellow.svg" alt="close">
                 </div>
 
                 <div class="tab_container">
@@ -79,19 +91,19 @@
                                 <table>
                                     <tr>
                                         <td>Height</td>
-                                        <td>0.6 m</td>
+                                        <td id="poke_height">0.6 m</td>
                                     </tr>
                                     <tr>
                                         <td>Weight</td>
-                                        <td>8.8 Kg</td>
+                                        <td id="poke_weight">8.8 Kg</td>
                                     </tr>
                                     <tr>
                                         <td>Base Exp.</td>
-                                        <td>62</td>
+                                        <td id="poke_base_exp">62</td>
                                     </tr>
                                     <tr>
                                         <td>Abilities:</td>
-                                        <td>blaze, solar-power</td>
+                                        <td id="poke_abilities">blaze, solar-power</td>
                                     </tr>
                                 </table>
                             </div>
@@ -100,7 +112,7 @@
                     <input type="radio" name="option" id="opt_2">
                     <label class="tab_label" for="opt_2">
                         <div class="tab_name">Stats</div>
-                        <div class="tab_content">
+                        <div class="tab_content" id="poke_stats_bars">
                             <div class="progress_bar" data-label="hp 80" style="--width: 80"></div>
                             <div class="progress_bar" data-label="attack 60" style="--width: 60"></div>
                             <div class="progress_bar" data-label="defense 45" style="--width: 45"></div>
@@ -114,23 +126,30 @@
                     <label class="tab_label" for="opt_3">
                         <div class="tab_name">Evo Chain</div>
                         <div class="tab_content">
-                            <div class="tab_evo">
+                            <div class="tab_evo" id="poke_evo_chain">
+
+
                                 <div class="evo_item">
                                     <img class="tab_image" src="./assets/images/004.png">
                                     <h5>Glumanda</h5>
                                 </div>
+
                                 <img src="./assets/icons/chevron-double-right.svg">
-                                <div class="evo_item">
+
+                                <div class="evo_item" id="poke_evo_2">
                                     <img class="tab_image" src="./assets/images/005.png">
                                     <h5>Glutexo</h5>
                                 </div>
+
                                 <img src="./assets/icons/chevron-double-right.svg">
-                                <div class="evo_item">
+
+                                <div class="evo_item" id="poke_evo_3">
                                     <img class="tab_image" src="./assets/images/006.png">
                                     <h5>Glurak</h5>
                                 </div>
+
+
                             </div>
-                            
                         </div>
                     </label>
                 </div>
@@ -138,30 +157,34 @@
         </dialog>
     </main>
 
-    <!-- <footer>
+    <footer>
         <div class="logo_img mar_16">
-            <img src="./assets/images/Pokédex_logo.png" alt="">
+            <img class="header_logo_image" src="./assets/images/Pokédex_logo.png" alt="">
         </div>
-    </footer> -->
+    </footer>
 
 </body>
 
 <script src="./scripts/script.js"></script>
 
 <script>
-    // const openButton = document.querySelector("[data_open_modal]");
-    // const closeButton = document.querySelector("[data_close_modal]");
     const modal = document.querySelector("[data_modal]");
     const overlay = document.querySelector("[data_overlay]")
+    const searchInput = document.querySelector("[search_input]")
 
-    // openButton.addEventListener("click", () => {
-    //     modal.showModal();
-    // });
-
-    // closeButton.addEventListener("click", () => {
-    //     modal.close();
-    // });
-
+    searchInput.addEventListener("input", () => {
+        if (searchInput.value.length >= 3) {
+            console.log("es klappt")
+            searchForPokeName(searchInput.value);
+            // label.classList.add('filled');
+        }
+        else if (searchInput.value.length > 0) {
+            // label.classList.add('filled');
+        }
+        else {
+            onloadFunction();
+        }
+    })
 
 </script>
 

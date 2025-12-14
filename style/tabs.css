@@ -5,7 +5,7 @@
     position: relative;
 }
 
-input {
+.tab_container input {
     display: none;
 }
 
@@ -35,8 +35,8 @@ input:checked + label .tab_name {
     z-index: 0;
     opacity: 0;
     transition: 0.3s;
-    /* min-width: 282px; */
-    max-height: 160px;
+    min-width: 282px;
+    max-height: 340px;
     overflow-y: auto;
 }
 
@@ -63,19 +63,26 @@ input:checked + label .tab_content {
         width: 270px;
         overflow: hidden;
     }
-.tab_label {
-    min-width: calc(238px / 3);
-}
-.tab_evo {
-    flex-direction: column;
-}
-.progress_bar {
-    --max-width: 200px;
-    width: 200px;
-}
-.tab_content {
-    width: 235px;
-}
+    .tab_label {
+        min-width: calc(238px / 3);
+    }
+    .tab_evo {
+        flex-direction: column;
+    }
+    .progress_bar {
+        --max-width: 200px;
+        width: 200px;
+    }
+    .tab_content {
+        min-width: 230px;
+    }
+    .progress_bar::after {
+        max-width: calc(200px - 1.3em);
+    }
+    .tab_evo {
+        padding: 4px;
+    }
+    
 }
 
 @media (max-width: 326px) {

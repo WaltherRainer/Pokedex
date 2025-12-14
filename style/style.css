@@ -41,7 +41,7 @@
 
 main {
     min-height: 80dvh;
-    margin-top: 60px;
+    max-width: 1920px;
 }
 
 td:nth-child(1) {
@@ -50,7 +50,7 @@ td:nth-child(1) {
 
 table {
     padding: 0 8px;
-    font-size: 15px;
+    font-size: 18px;
 }
 
 td {
@@ -95,6 +95,7 @@ h1 {
 
 h3 {
     font-family: "Nabla", system-ui;
+    font-size: 20px;
 }
 
 .grid_container {
@@ -113,7 +114,7 @@ h3 {
 
 footer {
     min-width: 100%;
-    background-image: linear-gradient(to top, var(--bg_purple_blue), hsl(0, 0%, 10%));
+    background-image: linear-gradient(to top, var(--purple_1), hsl(0, 0%, 5%));
     display: flex;
     justify-content: center;
     align-items: center;
