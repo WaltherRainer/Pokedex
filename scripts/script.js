@@ -1,5 +1,5 @@
 let activePokeData = [];
-let pokeCount = 25;
+let pokeCount = 20;
 let pokeOffset = 0;
 let pokeDetailData = []; 
 let pokeEvoChain = [];
