@@ -100,10 +100,11 @@ h3 {
 
 .grid_container {
     display: grid;
+    justify-content: center;
+    justify-items: center;
     grid-auto-rows: 206px;
     grid-template-columns: repeat(auto-fit, minmax(156px, 1fr));
     gap: .7rem;
-    justify-content: center;
     margin: .7rem .7rem;
 }
 

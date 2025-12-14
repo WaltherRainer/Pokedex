@@ -153,8 +153,9 @@ function searchForPokeName(pokeName) {
     }
 };
 
-function showMore(qty = 10) {
-    pokeCount += qty;
+function showMore() {
+    let qty = parseInt(document.getElementById('qty_to_show').value)
+    pokeCount = pokeCount + qty;
     onloadFunction();
 };
 

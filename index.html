@@ -15,21 +15,12 @@
         <link rel="stylesheet" href="./style/loading_spinner.css">
         <script src="./scripts/fetch_poke.js"></script>
         <script src="./scripts/templates.js"></script>
-        
-        <!-- Evtl. Fonst einfügen-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&family=Nabla&display=swap" rel="stylesheet">
         <!-- Icon einfügen-->
         <link rel="icon" type="image/x-icon" href="./assets/images/002.png">
-<style>
 
-body.modal-open {
-  height: 100vh;
-  overflow-y: hidden;
-}
-
-</style>
 
 </head>
 
@@ -46,14 +37,18 @@ body.modal-open {
     <main>
 
     <section class="searchbar">
-        <form >
+        <form>
             <div class="search_container">
                 <input search_input type="text" class="text_input" id="poke_search"
                 autocomplete="off" placeholder="Min. 3 Zeichen" required>
-                <label class="search_label" for="poke_search">Suchen</label>
+                <label class="search_label" for="poke_search">search</label>
             </div>
         </form>
-        <button onclick="showMore()" class="btn_showmore">Show more</button>
+        <div class="show_more">
+            <!-- <p>select the qty. you want to load:</p> -->
+            <input type="number" class="text_input qty_input" step="10" value="20" id="qty_to_show">
+            <button onclick="showMore()" class="btn_showmore">show more</button>
+        </div>
     </section>
 
         <section class="grid_container"  id="prev_card">
@@ -71,7 +66,7 @@ body.modal-open {
             </div>
         </section>
 
-        <dialog data_modal class="modal">
+        <dialog data_modal class="modal" id='dialog'>
             <div class="large_card">
                 <div class="large_card_head">
                     <h3 id="poke_number">#4</h3>
@@ -154,8 +149,6 @@ body.modal-open {
                                     <img class="tab_image" src="./assets/images/006.png">
                                     <h5>Glurak</h5>
                                 </div>
-
-
                             </div>
                         </div>
                     </label>
@@ -175,34 +168,7 @@ body.modal-open {
 <script src="./scripts/script.js"></script>
 
 <script>
-    const modal = document.querySelector("[data_modal]");
-    const overlay = document.querySelector("[data_overlay]")
-    const searchInput = document.querySelector("[search_input]")
 
-    searchInput.addEventListener("input", () => {
-        if (searchInput.value.length >= 3) {
-            searchForPokeName(searchInput.value);
-            searchInput.classList.add('has-content');
-        }
-        else if (searchInput.value.length > 0) {
-            searchInput.classList.remove('has-content');
-        }
-        else {
-            onloadFunction();
-        }
-    })
-
-modal.addEventListener("click", e => {
-  const dialogDimensions = modal.getBoundingClientRect()
-  if (
-    e.clientX < dialogDimensions.left ||
-    e.clientX > dialogDimensions.right ||
-    e.clientY < dialogDimensions.top ||
-    e.clientY > dialogDimensions.bottom
-  ) {
-    modal.close()
-  }
-})
 
 </script>
 

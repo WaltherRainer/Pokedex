@@ -38,6 +38,7 @@ input:checked + label .tab_name {
     min-width: 282px;
     max-height: 340px;
     overflow-y: auto;
+    min-height: 330px;
 }
 
 input:checked + label .tab_content {
@@ -53,6 +54,13 @@ input:checked + label .tab_content {
 .tab_name:hover {
     background-color: hsl(0, 0%, 30%);
     transition: 0.3s;
+}
+
+@media (max-width: 480px) {
+    .search_container {
+        width: 30dvw;
+    }
+
 }
 
 @media (max-width: 375px) {

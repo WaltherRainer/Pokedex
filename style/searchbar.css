@@ -2,17 +2,25 @@
     --active_border: #fd7f0a;
 }
 
+.show_more {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: hsl(0, 0%, 85%);
+}
+
 .searchbar {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 16px 16px;
     min-height: 80px;
     width: 100%;
     background-color: hsl(0, 0%, 5%);    
+    max-width: 1920px;
 }
 
 .search_container {
-    width: 140px;
     position: relative;
 }
 
@@ -75,13 +83,15 @@
 .btn_showmore {
     font-family: "Comic Relief", system-ui;
     height: 45px;
-    width: 140px;
+    padding: 0 6px;
     cursor: pointer;
     color: var(--purple_3);
     background-color: hsl(0, 0%, 10%);
     border: 2px solid var(--purple_1);
     border-radius: 5px;
-    font-size: 18px;
+    font-size: 16px;
+    min-width: 95px;
+
 }
 
 .btn_showmore:hover {
@@ -91,4 +101,9 @@
 .text_input:hover {
    background: hsl(0, 0%, 15%); 
    background-color: hsl(0, 0%, 15%); 
+}
+
+.qty_input {
+    width: 75px; 
+    height: 45px;
 }
