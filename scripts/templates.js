@@ -47,3 +47,25 @@ function getEvoArrowtempl() {
     `
 }
 
+function getLoadingSpinnerTempl() {
+    return `
+    <div class="loading_spinner">
+        <div class="spinner"></div>
+    </div>
+    `
+}
+
+function filledDataArray(pokeEntry, pokDetail) {
+        let tmpData = {
+            "pokeId" : getPokeIdFromUrl(pokeEntry.url),
+            "name": pokeEntry.name,
+            "weight": pokDetail.weight,
+            "height": pokDetail.height,
+            "image": pokDetail.sprites.other["official-artwork"].front_default,
+            "base_experience": pokDetail.base_experience,
+            "stats" : pokDetail.stats,
+            "types" : pokDetail.types,
+            "abilities" : pokDetail.abilities,
+        }
+        return tmpData;
+};

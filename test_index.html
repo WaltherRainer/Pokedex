@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="./style/icons.css">
         <link rel="stylesheet" href="./style/tabs.css">
         <link rel="stylesheet" href="./style/searchbar.css">
+        <link rel="stylesheet" href="./style/loading_spinner.css">
         <script src="./scripts/fetch_poke.js"></script>
         <script src="./scripts/templates.js"></script>
         
@@ -23,11 +24,15 @@
         <link rel="icon" type="image/x-icon" href="./assets/images/002.png">
 <style>
 
+
+
 </style>
 
 </head>
 
 <body onload="onloadFunction()">
+
+    <div id="loading_spinner"></div>
 
     <header>
         <div class="logo_img">
@@ -63,8 +68,7 @@
             </div>
         </section>
 
-        <dialog data_modal class="modal">
-
+        <dialog data_modal class="modal" id='dialog'>
             <div class="large_card">
                 <div class="large_card_head">
                     <h3 id="poke_number">#4</h3>
@@ -168,23 +172,7 @@
 <script src="./scripts/script.js"></script>
 
 <script>
-    const modal = document.querySelector("[data_modal]");
-    const overlay = document.querySelector("[data_overlay]")
-    const searchInput = document.querySelector("[search_input]")
 
-    searchInput.addEventListener("input", () => {
-        if (searchInput.value.length >= 3) {
-            console.log("es klappt")
-            searchForPokeName(searchInput.value);
-            // label.classList.add('filled');
-        }
-        else if (searchInput.value.length > 0) {
-            // label.classList.add('filled');
-        }
-        else {
-            onloadFunction();
-        }
-    })
 
 </script>
 
