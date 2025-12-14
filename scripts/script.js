@@ -165,6 +165,14 @@ function searchForPokeName(pokeName) {
 
 function showMore() {
     let qty = parseInt(document.getElementById('qty_to_show').value)
+    if (qty < 1) {
+        qty = 20
+        document.getElementById('qty_to_show').value = 20
+    }
+    else if (qty > 100) {
+        qty = 100
+        document.getElementById('qty_to_show').value = 100
+    }
     pokeCount = pokeCount + qty;
     document.getElementById('prev_card').innerHTML = "";
     onloadFunction();
