@@ -97,14 +97,14 @@ header {
 
 h1 {
     text-align: center;
-    font-family: "Nabla", system-ui;
+    font-family: "Comic Relief", system-ui;
     color: hsl(0 0% 85%);
     font-size: 4em;
     padding-bottom: 40px;
 }
 
 h3 {
-    font-family: "Nabla", system-ui;
+    font-family: "Comic Relief", system-ui;
     font-size: 20px;
 }
 
@@ -135,6 +135,12 @@ footer {
     display: flex;
     justify-content: space-between;
     color: hsl(0, 0%, 85%);
+}
+
+.no_search_results {
+    color: hsl(0, 0%, 85%);
+    font-size: 40px;
+    padding-top: 40px;
 }
 
 /* .no-scroll {

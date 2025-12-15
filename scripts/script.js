@@ -99,14 +99,19 @@ function closeModal() {
 
 async function renderPreviewCard() {
     let pokeTypesTempl = "";
-    document.getElementById('prev_card').innerHTML = ""
-    for (let index = 0; index < activePokeData.length; index++) {
-        const pokeName = activePokeData[index].name;
-        const pokeNumber = getPokeIdFromUrl(activePokeData[index].url)
-        const imgUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" + pokeNumber + ".png";
-        pokeTypesTempl = renderTypesTempl(index);
-        let tmpHtml = getPrevCardTempl(index, pokeName, imgUrl, pokeTypesTempl, pokeNumber)
-        document.getElementById('prev_card').innerHTML += tmpHtml
+    document.getElementById('prev_card').innerHTML = "";
+    if (Array.isArray(activePokeData) && activePokeData.length) {
+        for (let index = 0; index < activePokeData.length; index++) {
+            const pokeName = activePokeData[index].name;
+            const pokeNumber = getPokeIdFromUrl(activePokeData[index].url);
+            const imgUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" + pokeNumber + ".png";
+            pokeTypesTempl = renderTypesTempl(index);
+            let tmpHtml = getPrevCardTempl(index, pokeName, imgUrl, pokeTypesTempl, pokeNumber);
+            document.getElementById('prev_card').innerHTML += tmpHtml;
+        }
+    }
+    else {
+        document.getElementById('prev_card').innerHTML = `<div class="no_search_results">no matches!</div>`;
     }
 };
 
@@ -145,6 +150,8 @@ function getAbilitiesString(dataIndex) {
 
 function searchForPokeName(pokeName) {
     let searchResults = [];
+    pokeDetailData = [];
+    activePokeData = [];
     for (let index = 0; index < allPokemons.length; index++) {
         const tmpName = allPokemons[index].name;
         if (tmpName.includes(pokeName)) {
@@ -156,11 +163,8 @@ function searchForPokeName(pokeName) {
             searchResults.push(resultData);
         }
     }
-    if (Array.isArray(searchResults) && searchResults.length) {
-        pokeDetailData = [];
-        activePokeData = [];
-        loadSearchResInToActData(searchResults);
-    }
+
+    loadSearchResInToActData(searchResults);
 };
 
 function showMore() {
@@ -198,7 +202,12 @@ function getPokeIdFromUrl(url) {
 
 async function nextPoke() {
     if (activePokeData.length > activePokeIndex + 1) {
+        activePokeIndex++
         await loadModalCard(activePokeIndex + 1);
+    }
+    else {
+        activePokeIndex = 0
+        await loadModalCard(activePokeIndex);
     }
 };
 
@@ -206,4 +215,9 @@ async function prevPoke() {
     if (activePokeIndex > 0) {
         await loadModalCard(activePokeIndex - 1);
     }
+    else {
+        activePokeIndex = activePokeData.length - 1;
+        await loadModalCard(activePokeIndex);
+    }
+    
 };

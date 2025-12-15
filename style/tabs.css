@@ -96,3 +96,15 @@ input:checked + label .tab_content {
         min-width: calc(236px / 3);
 }
 }
+
+@media (max-height: 800px) {
+    .tab_image {
+        width: 60px;
+    }
+    .large_image {
+        width: 60%;
+    }
+    .large_card {
+        min-height: 590px;
+    }
+}
