@@ -61,11 +61,13 @@ async function onloadFunction() {
     document.body.classList.add('no-scroll');
     document.getElementById('loading_spinner').innerHTML = getLoadingSpinnerTempl();
     let pokData = await useAPI(); 
-    activePokeData = pokData["results"];
-    await loopActivePokeData();
+    fetchPokeData = pokData["results"];
+    await fetchPokeDetails();
     await loadAllPokeNames();
     document.getElementById('loading_spinner').innerHTML = "";
     document.body.classList.remove('no-scroll');
+    pokeDetailData = fetchPokeDetailData;
+    activePokeData = fetchPokeData;
     renderPreviewCard();
 };
 
@@ -79,22 +81,30 @@ function showMore() {
         qty = 100
         document.getElementById('qty_to_show').value = 100
     }
+    resetSearchInput();
     pokeCount = pokeCount + qty;
     document.getElementById('prev_card').innerHTML = "";
     getMoreData(pokeCount - qty);
 };
 
+function resetSearchInput() {
+    let field = document.getElementById('poke_search');
+    field.value = field.defaultValue;
+}
+
 async function getMoreData(count) {
-    activePokeData = [];
+    fetchPokeData = [];
     document.body.classList.add('no-scroll');
     document.getElementById('loading_spinner').innerHTML = getLoadingSpinnerTempl();
     for (let index = 0; index < pokeCount; index++) {
         const tmpObj = allPokemons[index];
-        activePokeData.push(tmpObj);
+        fetchPokeData.push(tmpObj);
     }
-    await loopActivePokeData(count);
+    await fetchPokeDetails(count);
     document.getElementById('loading_spinner').innerHTML = "";
     document.body.classList.remove('no-scroll');
+    activePokeData = fetchPokeData;
+    pokeDetailData = fetchPokeDetailData;
     renderPreviewCard();
 };
 
@@ -195,10 +205,7 @@ function searchForPokeName(pokeName) {
     let searchResults = [];
     searchPokeData = [];
     searchPokeDetailData = [];
-    fetchPokeData = activePokeData;
-    fetchPokeDetailData = pokeDetailData;
-    activePokeData = [];
-    pokeDetailData = [];
+    pokeName = pokeName.toLowerCase();
     for (let index = 0; index < allPokemons.length; index++) {
         const tmpName = allPokemons[index].name;
         if (tmpName.includes(pokeName)) {

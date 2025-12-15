@@ -12,7 +12,6 @@
     --blue_1: rgb(2,0,101);
     --blue_2: rgb(52,49,154);
     --scroll-y: 0;
-
 }
 
 .d_flex_c_c {
@@ -93,7 +92,6 @@ header {
     background-image: linear-gradient(to bottom, var(--purple_1), hsl(0, 0%, 5%));
     display: flex;
     min-height: 10vh;
-    
 }
 
 h1 {
@@ -107,6 +105,7 @@ h1 {
 h3 {
     font-family: "Comic Relief", system-ui;
     font-size: 20px;
+    text-align: center;
 }
 
 .grid_container {
