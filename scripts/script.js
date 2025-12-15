@@ -23,6 +23,7 @@ searchInput.addEventListener("input", () => {
     }
     else if (searchInput.value.length > 0) {
         searchInput.classList.remove('has-content');
+        reloadData();
     }
     else {
         reloadData();
@@ -131,9 +132,9 @@ window.addEventListener('scroll', () => {
   document.documentElement.style.setProperty('--scroll-y', `${window.scrollY}px`);
 });
 
-function openDistModal(index) {
-    showDialog()
+async function openDistModal(index) {
     loadModalCard(index);
+    showDialog()
     modal.showModal();
 };
 
@@ -202,26 +203,25 @@ function getAbilitiesString(dataIndex) {
 };
 
 function searchForPokeName(pokeName) {
-    let searchResults = [];
-    searchPokeData = [];
-    searchPokeDetailData = [];
-    pokeName = pokeName.toLowerCase();
-    for (let index = 0; index < allPokemons.length; index++) {
-        const tmpName = allPokemons[index].name;
-        if (tmpName.includes(pokeName)) {
-            let resultData = {
-                "pokeId" : getPokeIdFromUrl(allPokemons[index].url),
-                "name": tmpName,
-                "url": allPokemons[index].url,
-                }
-            searchResults.push(resultData);
+        let searchResults = [];
+        searchPokeData = [];
+        searchPokeDetailData = [];
+        pokeName = pokeName.toLowerCase();
+        for (let index = 0; index < allPokemons.length; index++) {
+            const tmpName = allPokemons[index].name;
+            if (tmpName.includes(pokeName)) {
+                let resultData = {
+                    "pokeId" : getPokeIdFromUrl(allPokemons[index].url),
+                    "name": tmpName,
+                    "url": allPokemons[index].url,
+                    }
+                searchResults.push(resultData);
+            }
         }
-    }
-    loadSearchResInToData(searchResults);
+        loadSearchResInToData(searchResults);
 };
 
 function renderTypesTempl(dataIndex) {
-    
     let myArray = pokeDetailData[dataIndex].types;
     if (Array.isArray(myArray) && myArray.length) {
         let pokeTypesTempl = "";
