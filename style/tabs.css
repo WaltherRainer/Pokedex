@@ -54,12 +54,12 @@ input:checked + label .tab_content {
     transition: 0.3s;
 }
 
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
     .search_container {
         width: 30dvw;
     }
 
-}
+} */
 
 @media (max-width: 375px) {
     td:nth-child(1) {

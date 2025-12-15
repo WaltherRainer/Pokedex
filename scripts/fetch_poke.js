@@ -1,8 +1,8 @@
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon"; 
 
-async function loopActivePokeData() {
-    pokeDetailData = []; 
-    for (let i = 0; i < activePokeData.length; i++) {
+async function loopActivePokeData(startIndex = 0) {
+    let i = startIndex
+    for (i; i < activePokeData.length; i++) {
         const pokeEntry = activePokeData[i];
         const pokDetail = await useAPI(pokeEntry.url);
         pokeDetailData.push(filledDataArray(pokeEntry, pokDetail));

@@ -53,6 +53,7 @@
 main {
     min-height: 80dvh;
     max-width: 1920px;
+    margin: 0 auto;
 }
 
 td:nth-child(1) {

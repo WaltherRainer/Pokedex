@@ -55,6 +55,37 @@ async function onloadFunction() {
     renderPreviewCard();
 };
 
+function showMore() {
+    let qty = parseInt(document.getElementById('qty_to_show').value)
+    if (qty < 1) {
+        qty = 20
+        document.getElementById('qty_to_show').value = 20
+    }
+    else if (qty > 100) {
+        qty = 100
+        document.getElementById('qty_to_show').value = 100
+    }
+    pokeCount = pokeCount + qty;
+    document.getElementById('prev_card').innerHTML = "";
+    getMoreData(pokeCount - qty);
+};
+
+async function getMoreData(count) {
+    activePokeData = [];
+    document.body.classList.add('no-scroll');
+    document.getElementById('loading_spinner').innerHTML = getLoadingSpinnerTempl();
+    for (let index = 0; index < pokeCount; index++) {
+        const tmpObj = allPokemons[index];
+        activePokeData.push(tmpObj);
+    }
+    await loopActivePokeData(count);
+    document.getElementById('loading_spinner').innerHTML = "";
+    document.body.classList.remove('no-scroll');
+    renderPreviewCard();
+    console.log(activePokeData);
+    console.log(pokeDetailData);
+};
+
 const showDialog = () => {
   document.getElementById('dialog').classList.add('show')
   const scrollY = document.documentElement.style.getPropertyValue('--scroll-y');
@@ -163,24 +194,10 @@ function searchForPokeName(pokeName) {
             searchResults.push(resultData);
         }
     }
-
     loadSearchResInToActData(searchResults);
 };
 
-function showMore() {
-    let qty = parseInt(document.getElementById('qty_to_show').value)
-    if (qty < 1) {
-        qty = 20
-        document.getElementById('qty_to_show').value = 20
-    }
-    else if (qty > 100) {
-        qty = 100
-        document.getElementById('qty_to_show').value = 100
-    }
-    pokeCount = pokeCount + qty;
-    document.getElementById('prev_card').innerHTML = "";
-    onloadFunction();
-};
+
 
 function renderTypesTempl(dataIndex) {
     let myArray = pokeDetailData[dataIndex].types;

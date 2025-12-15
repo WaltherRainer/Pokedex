@@ -160,6 +160,7 @@ dialog::backdrop {
     align-items: center;
     font-size: 24px;
     margin: 8px 8px;
+    padding-top: 4px;
 }
 
 .types_container {
