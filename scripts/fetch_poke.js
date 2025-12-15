@@ -1,11 +1,21 @@
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon"; 
 
+
 async function loopActivePokeData(startIndex = 0) {
     let i = startIndex
     for (i; i < activePokeData.length; i++) {
         const pokeEntry = activePokeData[i];
         const pokDetail = await useAPI(pokeEntry.url);
         pokeDetailData.push(filledDataArray(pokeEntry, pokDetail));
+    }
+};
+
+async function loopSearchPokeData(startIndex = 0) {
+    let i = startIndex
+    for (i; i < searchPokeData.length; i++) {
+        const pokeEntry = searchPokeData[i];
+        const pokDetail = await useAPI(pokeEntry.url);
+        searchPokeDetailData.push(filledDataArray(pokeEntry, pokDetail));
     }
 };
 
@@ -32,10 +42,11 @@ async function loadAllPokeNames() {
     allPokemons = allPokeObj['results'];
 }
 
-async function loadSearchResInToActData(searchResults) {
-    activePokeData = searchResults;
-    await loopActivePokeData();
-    await loadAllPokeNames();
+async function loadSearchResInToData(searchResults) {
+    searchPokeData = searchResults;
+    await loopSearchPokeData();
+    activePokeData = searchPokeData;
+    pokeDetailData = searchPokeDetailData;
     renderPreviewCard();
 };
 
@@ -83,7 +94,3 @@ async function renderEvoChain() {
     }
     document.getElementById('poke_evo_chain').innerHTML = evoChainHtml;
 };
-
-
-
-

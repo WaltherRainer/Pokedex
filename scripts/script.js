@@ -7,6 +7,10 @@ let activePokeID = 0;
 let allPokemons = [];
 let activePokeIndex = 0; 
 let scrollPosition = 0;
+let searchPokeData = [];
+let searchPokeDetailData = [];
+let fetchPokeData = [];
+let fetchPokeDetailData = [];
 
 const modal = document.querySelector("[data_modal]");
 const overlay = document.querySelector("[data_overlay]")
@@ -21,7 +25,7 @@ searchInput.addEventListener("input", () => {
         searchInput.classList.remove('has-content');
     }
     else {
-        onloadFunction();
+        reloadData();
     }
 });
 
@@ -30,6 +34,16 @@ document.addEventListener('keydown', (e) => {
         closeModal();
     }
 });
+
+async function reloadData() {
+    document.body.classList.add('no-scroll');
+    document.getElementById('loading_spinner').innerHTML = getLoadingSpinnerTempl();
+    activePokeData = fetchPokeData;
+    pokeDetailData = fetchPokeDetailData;
+    document.getElementById('loading_spinner').innerHTML = "";
+    document.body.classList.remove('no-scroll');
+    renderPreviewCard();
+}
 
 modal.addEventListener("click", e => {
   const dialogDimensions = modal.getBoundingClientRect()
@@ -82,8 +96,6 @@ async function getMoreData(count) {
     document.getElementById('loading_spinner').innerHTML = "";
     document.body.classList.remove('no-scroll');
     renderPreviewCard();
-    console.log(activePokeData);
-    console.log(pokeDetailData);
 };
 
 const showDialog = () => {
@@ -181,8 +193,12 @@ function getAbilitiesString(dataIndex) {
 
 function searchForPokeName(pokeName) {
     let searchResults = [];
-    pokeDetailData = [];
+    searchPokeData = [];
+    searchPokeDetailData = [];
+    fetchPokeData = activePokeData;
+    fetchPokeDetailData = pokeDetailData;
     activePokeData = [];
+    pokeDetailData = [];
     for (let index = 0; index < allPokemons.length; index++) {
         const tmpName = allPokemons[index].name;
         if (tmpName.includes(pokeName)) {
@@ -194,10 +210,8 @@ function searchForPokeName(pokeName) {
             searchResults.push(resultData);
         }
     }
-    loadSearchResInToActData(searchResults);
+    loadSearchResInToData(searchResults);
 };
-
-
 
 function renderTypesTempl(dataIndex) {
     let myArray = pokeDetailData[dataIndex].types;
