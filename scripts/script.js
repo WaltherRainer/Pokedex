@@ -202,7 +202,6 @@ function getPokeIdFromUrl(url) {
 
 async function nextPoke() {
     if (activePokeData.length > activePokeIndex + 1) {
-        activePokeIndex++
         await loadModalCard(activePokeIndex + 1);
     }
     else {
