@@ -221,13 +221,16 @@ function searchForPokeName(pokeName) {
 };
 
 function renderTypesTempl(dataIndex) {
+    
     let myArray = pokeDetailData[dataIndex].types;
-    let pokeTypesTempl = "";
-    for (let index = 0; index < myArray.length; index++) {        
-        let typeName = myArray[index].type.name;
-        pokeTypesTempl += getTypeTempl(typeName);
+    if (Array.isArray(myArray) && myArray.length) {
+        let pokeTypesTempl = "";
+        for (let index = 0; index < myArray.length; index++) {        
+            let typeName = myArray[index].type.name;
+            pokeTypesTempl += getTypeTempl(typeName);
+        }
+        return pokeTypesTempl;
     }
-    return pokeTypesTempl;
 };
 
 function getPokeIdFromUrl(url) {
